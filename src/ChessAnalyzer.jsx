@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { 
   FaChessKnight, 
-  FaUpload, 
   FaCheckCircle, 
   FaExclamationTriangle,
   FaTimes,
@@ -67,7 +66,8 @@ export default function ChessAnalyzer() {
     const formData = new FormData();
     formData.append("pgn_file", file);
     try {
-      const res = await fetch("http://localhost:8000/analyze", {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+      const res = await fetch(`${apiUrl}/analyze`, {
         method: "POST",
         body: formData,
       });
